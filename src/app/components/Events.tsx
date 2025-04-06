@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import CustomImage from '@/components/CustomImage';
 
 const events = [
   {
@@ -9,7 +10,7 @@ const events = [
     date: "Щочетверга",
     time: "19:00",
     description: "Знайомство з новими винами у супроводі сомельє та легких закусок",
-    image: "url('/events/tasting.jpg')",
+    image: "/events/tasting.jpg",
     link: "https://forms.google.com/wine-tasting-registration"
   },
   {
@@ -17,7 +18,7 @@ const events = [
     date: "Щоп'ятниці",
     time: "20:00",
     description: "Живі виступи джазових музикантів у поєднанні з вишуканими винами",
-    image: "url('/events/jazz.jpg')",
+    image: "/events/jazz.jpg",
     link: "https://forms.google.com/jazz-evening-registration"
   },
   {
@@ -25,7 +26,7 @@ const events = [
     date: "Щосуботи",
     time: "18:00",
     description: "Навчання мистецтву виноробства та дегустації від експертів",
-    image: "url('/events/masterclass.jpg')",
+    image: "/events/masterclass.jpg",
     link: "https://forms.google.com/masterclass-registration"
   }
 ];
@@ -100,11 +101,14 @@ export default function Events() {
                 variants={itemVariants}
                 className="group relative min-h-[400px] rounded-lg overflow-hidden"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 
-                           group-hover:scale-110 group-hover:rotate-1"
-                  style={{ backgroundImage: event.image }}
-                />
+                <div className="absolute inset-0">
+                  <CustomImage
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 
                 <div className="relative h-full p-8 flex flex-col justify-end">

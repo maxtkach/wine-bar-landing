@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import WineCard from "./components/WineCard";
 import WineAnimation from "./components/WineAnimation";
 import WineHistory from "./components/WineHistory";
@@ -12,10 +12,21 @@ import BookingForm from "./components/BookingForm";
 import Atmosphere from "./components/Atmosphere";
 import Events from "./components/Events";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7 }
+const fadeIn: Variants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+    transition: {
+      duration: 0.3
+    }
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3
+    }
+  }
 };
 
 const stagger = {
@@ -236,6 +247,8 @@ export default function Home() {
                     <motion.div
                       key={i}
                       variants={fadeIn}
+                      initial="initial"
+                      animate="animate"
                       transition={{ delay: 0.3 + i * 0.1 }}
                     >
                       <div className="text-gold mb-2">{item.number}</div>
@@ -273,6 +286,9 @@ export default function Home() {
                   <motion.div
                     key={i}
                     variants={fadeIn}
+                    initial="initial"
+                    animate="animate"
+                    transition={{ delay: 0.3 + i * 0.1 }}
                     className="aspect-square relative group overflow-hidden"
                   >
                     <Image

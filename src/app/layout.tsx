@@ -3,13 +3,15 @@ import type { Metadata } from 'next';
 import { Inter, Roboto_Mono } from "next/font/google";
 
 const geist = Inter({
-  variable: "--font-geist",
-  subsets: ["latin"],
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+  variable: '--font-geist',
 });
 
 const geistMono = Roboto_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+  variable: '--font-geist-mono',
 });
 
 export const metadata: Metadata = {
@@ -50,6 +52,7 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   themeColor: '#0a0506',
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  metadataBase: new URL('https://maxtkach.github.io/wine-bar-landing'),
 };
 
 export default function RootLayout({

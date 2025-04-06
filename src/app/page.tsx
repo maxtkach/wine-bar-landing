@@ -132,7 +132,7 @@ export default function Home() {
               className="absolute inset-0"
             >
               <Image
-                src="/hero-bg.jpg"
+                src="/wine-bar-landing/hero-bg.jpg"
                 alt="Wine background"
                 fill
                 className="object-cover"

@@ -7,6 +7,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --wine: #8B0000;
+  --dark-wine: #2c0b14;
 }
 
 @layer base {
@@ -29,4 +31,31 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.wine-wave {
+  transform-origin: center;
+  animation: waveOpacity 8s ease-in-out infinite;
+}
+
+@keyframes waveOpacity {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.wine-waves {
+  animation: waveFloat 20s ease-in-out infinite;
+}
+
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2%);
+  }
 }

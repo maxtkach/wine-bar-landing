@@ -1,9 +1,17 @@
 import Image, { ImageProps } from 'next/image';
+import { StaticImageData } from 'next/image';
 
-export default function CustomImage({ src, ...props }: ImageProps) {
-  const modifiedSrc = src.startsWith('/') 
-    ? `/wine-bar-landing${src}`
-    : `/wine-bar-landing/${src}`;
+type CustomImageProps = Omit<ImageProps, 'src'> & {
+  src: string | StaticImageData;
+};
 
-  return <Image src={modifiedSrc} {...props} />;
+export default function CustomImage({ src, ...props }: CustomImageProps) {
+  if (typeof src === 'string') {
+    const modifiedSrc = src.startsWith('/') 
+      ? `/wine-bar-landing${src}` 
+      : `/wine-bar-landing/${src}`;
+    return <Image src={modifiedSrc} {...props} />;
+  }
+  
+  return <Image src={src} {...props} />;
 } 

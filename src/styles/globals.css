@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #D4AF37;
+  --dark: #0a0506;
+  --wine: #8B0000;
+  --dark-wine: #2c0b14;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply bg-[#0a0506] text-white font-light;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Адаптивный логотип в навигации */
+  .logo-text {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    letter-spacing: 0.2em;
+    background: linear-gradient(to right, var(--gold) 0%, rgba(212, 175, 55, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 300;
+  }
+
+  /* Большой заголовок в hero секции */
+  .hero-title {
+    font-size: clamp(3rem, 15vw, 12rem);
+    letter-spacing: 0.1em;
+    line-height: 0.9;
+    background: linear-gradient(to bottom right, var(--gold) 0%, rgba(212, 175, 55, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 300;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    .logo-text {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+    
+    .hero-title {
+      font-size: clamp(5rem, 20vw, 16rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply w-0.5 md:w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[#0a0506];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold/30;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold/50;
+}
+
+/* Hover Effects */
+.hover-underline {
+  @apply relative;
+}
+
+.hover-underline::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-px bg-gold transition-all duration-300;
+}
+
+.hover-underline:hover::after {
+  @apply w-full;
+}
+
+/* Button Effects */
+.button-glow {
+  @apply relative overflow-hidden;
+}
+
+.button-glow::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300
+         bg-gradient-to-r from-gold/20 via-transparent to-transparent;
+}
+
+.button-glow:hover::before {
+  @apply opacity-100;
+}
+
+/* Image Effects */
+.image-zoom {
+  @apply transition-transform duration-700;
+}
+
+.image-zoom:hover {
+  @apply scale-110;
+}
+
+/* Text Effects */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-gold to-gold/70;
+}
+
+/* Glass Effect */
+.glass {
+  @apply backdrop-blur-sm bg-white/5;
+}
+
+/* Transitions */
+.page-transition {
+  @apply transition-all duration-300;
+}
+
+.fade-up {
+  @apply opacity-0 translate-y-4 transition-all duration-700;
+}
+
+.fade-up.in-view {
+  @apply opacity-100 translate-y-0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.7s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* Section Transitions */
+.section-enter {
+  @apply opacity-0 translate-y-8;
+}
+
+.section-enter-active {
+  @apply opacity-100 translate-y-0 transition-all duration-700;
+}
+
+/* Navigation */
+.nav-blur {
+  @apply backdrop-blur-sm bg-black/20;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.card-hover {
+  @apply transition-transform duration-300 hover:scale-[1.02];
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  @apply fixed inset-0 bg-black/95 backdrop-blur-md z-50
+         flex flex-col items-center justify-center
+         transition-all duration-300;
+}
+
+.mobile-menu.hidden {
+  @apply opacity-0 pointer-events-none;
+}
+
+.mobile-menu.visible {
+  @apply opacity-100 pointer-events-auto;
+}
+
+/* Responsive Typography */
+@screen sm {
+  h1 {
+    @apply text-5xl md:text-7xl lg:text-8xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply text-sm md:text-base;
+  }
+}
+
+/* Container Padding */
+.container {
+  @apply px-4 md:px-6;
+}
+
+/* Grid Layouts */
+.wine-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8;
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: no-preference) {
+  .optimize-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .hover\:scale-110:hover {
+    transform: none;
+  }
+
+  .hover\:opacity-100:hover {
+    opacity: 1;
+  }
+}
+
+/* Плавное появление секций */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover эффекты */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  @apply bg-gold/50;
+  transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Анимация для изображений */
+.image-hover {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Кнопки */
+.btn {
+  @apply px-6 py-2 border border-gold/30 hover:border-gold text-sm tracking-widest transition-all duration-300;
+}
+
+/* Градиентный текст */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-gold/80 to-gold;
+}
+
+/* Анимация волн вина */
+.wine-waves {
+  animation: waveFloat 20s ease-in-out infinite;
+}
+
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2%);
+  }
+}
+
+.wine-wave {
+  transform-origin: center;
+  animation: waveOpacity 8s ease-in-out infinite;
+}
+
+@keyframes waveOpacity {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Анимация появления карточек */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Стили для кнопки заказа */
+.order-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.order-button:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold);
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+.order-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 60%);
+  transform: translate(-75%, -75%) scale(0);
+  transition: transform 0.6s ease-out;
+}
+
+.order-button:hover::before {
+  transform: translate(-75%, -75%) scale(1);
+}
+
+.order-button:active {
+  transform: scale(0.98);
+}
+
+/* Анимация для активного состояния */
+.order-button:active::before {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.6) 0%, transparent 60%);
+  transform: translate(-75%, -75%) scale(0.95);
+}
+
+/* Анимация наполнения бокала */
+.wine-fill {
+  transform-origin: bottom;
+}
+
+.wine-wave-animation {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wine-wave-animation.is-pouring {
+  animation: waveEffect 2s ease-in-out infinite;
+}
+
+@keyframes waveEffect {
+  0%, 100% {
+    d: path("M30 40 C30 40 20 45 20 50 C20 90 45 100 45 140 L55 140 C55 100 80 90 80 50 C80 45 70 40 70 40 Z");
+  }
+  50% {
+    d: path("M30 40 C30 38 20 42 20 50 C20 90 45 98 45 140 L55 140 C55 98 80 92 80 50 C80 42 70 38 70 40 Z");
+  }
+}
+
+/* Блик на бокале */
+.glass-shine {
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Улучшенная анимация появления карточек */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Улучшенный эффект для кнопки заказа */
+.order-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.order-button:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold);
+}
+
+.order-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+  transform: scale(0);
+  transition: transform 0.6s ease-out;
+}
+
+.order-button:hover::after {
+  transform: scale(1);
+}
+
+/* Intersection Observer для анимации появления */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

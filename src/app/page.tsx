@@ -1,17 +1,16 @@
 'use client';
 
-import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import WineCard from "./components/WineCard";
+import { useState } from "react";
 import WineAnimation from "./components/WineAnimation";
 import WineHistory from "./components/WineHistory";
 import WineMaking from "./components/WineMaking";
-import { useState } from "react";
 import MobileMenu from "./components/MobileMenu";
 import BookingForm from "./components/BookingForm";
 import Atmosphere from "./components/Atmosphere";
 import Events from "./components/Events";
-import CustomImage from '../components/CustomImage';
+import WineCard from "./components/WineCard";
+import CustomImage from '@/components/CustomImage';
 
 const fadeIn: Variants = {
   initial: {
@@ -248,8 +247,6 @@ export default function Home() {
                     <motion.div
                       key={i}
                       variants={fadeIn}
-                      initial="initial"
-                      animate="animate"
                       transition={{ delay: 0.3 + i * 0.1 }}
                     >
                       <div className="text-gold mb-2">{item.number}</div>
@@ -287,11 +284,97 @@ export default function Home() {
                   <motion.div
                     key={i}
                     variants={fadeIn}
-                    initial="initial"
-                    animate="animate"
-                    transition={{ delay: 0.3 + i * 0.1 }}
                     className="aspect-square relative group overflow-hidden"
                   >
                     <CustomImage
                       src={`/gallery/gallery${i}.jpg`}
-                      alt={`
+                      alt={`Gallery image ${i}`}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="контакти" className="py-32 relative overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.2 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%)'
+              }}
+            />
+            <div className="container mx-auto px-6">
+              <div className="max-w-xl mx-auto text-center">
+                <motion.h2
+                  {...fadeIn}
+                  className="text-3xl font-light tracking-wider mb-12"
+                >
+                  КОНТАКТИ
+                </motion.h2>
+                <motion.div
+                  variants={stagger}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true }}
+                  className="space-y-6 text-gray-400"
+                >
+                  {[
+                    { label: "Адреса", value: "вул. Винна, 123, Київ" },
+                    { label: "Телефон", value: "+380 44 123-45-67" },
+                    { label: "Email", value: "info@wineverse.ua" }
+                  ].map((item, i) => (
+                    <motion.p
+                      key={i}
+                      variants={fadeIn}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <span className="text-gold">{item.label}</span>
+                      {item.value}
+                    </motion.p>
+                  ))}
+                  <motion.div
+                    variants={fadeIn}
+                    className="pt-8"
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => {
+                        const phoneNumber = '+380441234567';
+                        window.location.href = `tel:${phoneNumber}`;
+                      }}
+                      className="px-8 py-3 border border-gold/30 hover:border-gold text-sm tracking-widest transition-all duration-300"
+                    >
+                      Забронювати столик
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="py-8 border-t border-white/5">
+            <div className="container mx-auto px-6 text-center text-sm text-gray-500">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                © 2024 Wine·Verse. Всі права захищені.
+              </motion.p>
+            </div>
+          </footer>
+        </div>
+      </div>
+      <BookingForm isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+    </>
+  );
+}

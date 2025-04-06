@@ -4,10 +4,11 @@ const nextConfig = {
   basePath: '/wine-bar-landing',
   images: {
     unoptimized: true,
-    loader: 'custom',
-    loaderFile: './image-loader.js',
   },
-  assetPrefix: '/vine/',
+  // Удалите или закомментируйте эти строки, если они есть
+  // assetPrefix: '/vine/',
+  // loader: 'custom',
+  // loaderFile: './image-loader.js',
 };
 
 module.exports = nextConfig; 

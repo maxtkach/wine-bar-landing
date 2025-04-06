@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold/30;
+  }
+}
+
 :root {
   --gold: #D4AF37;
   --dark: #0a0506;

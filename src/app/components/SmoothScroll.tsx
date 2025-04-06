@@ -7,8 +7,7 @@ export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 0.3,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothTouch: false,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
     });
 

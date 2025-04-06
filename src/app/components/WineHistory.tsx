@@ -1,50 +1,58 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
+import CustomImage from '@/components/CustomImage';
 
 const historyItems = [
   {
-    year: '6000 до н.е.',
-    title: 'Перше вино',
-    description: 'Археологічні знахідки свідчать про виробництво вина в регіоні сучасної Грузії.',
-    image: '/history1.jpg'
+    title: "Традиції",
+    description: "Вікові традиції виноробства, що передаються з покоління в покоління",
+    image: "/history/history1.jpg"
   },
   {
-    year: '3000 до н.е.',
-    title: 'Єгипетські традиції',
-    description: 'Давні єгиптяни розвивають мистецтво виноробства та використовують вино в релігійних церемоніях.',
-    image: '/history2.jpg'
+    title: "Спадщина",
+    description: "Багата історія та культурна спадщина виноробного мистецтва",
+    image: "/history/history2.jpg"
   },
   {
-    year: '800 до н.е.',
-    title: 'Грецька культура',
-    description: 'Греки поширюють культуру виноробства по всьому Середземномор\'ю.',
-    image: '/history3.jpg'
+    title: "Колекція",
+    description: "Унікальна колекція вин з найкращих виноробень світу",
+    image: "/history/history3.jpg"
   },
   {
-    year: '100 н.е.',
-    title: 'Римська імперія',
-    description: 'Римляни вдосконалюють методи виноробства та створюють перші класифікації вин.',
-    image: '/history4.jpg'
+    title: "Винний льох",
+    description: "Ідеальні умови зберігання у нашому винному льоху",
+    image: "/history/history4.jpg"
   }
 ];
 
 export default function WineHistory() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   return (
-    <div className="relative py-32">
+    <section id="історія" className="py-32 relative overflow-hidden">
+      {/* Фоновое изображение */}
+      <div className="absolute inset-0">
+        <CustomImage
+          src="/history/history-bg.jpg"
+          alt="History background"
+          fill
+          className="object-cover opacity-10"
+        />
+      </div>
+
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 0.15 }}
         transition={{ duration: 1 }}
-        className="absolute inset-0 bg-[url('/history-bg.jpg')] bg-cover bg-center"
+        className="absolute inset-0 bg-gradient-to-b from-dark-wine/30 via-transparent to-dark-wine/20"
       />
       
-      <div className="container mx-auto px-6 relative">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,60 +60,33 @@ export default function WineHistory() {
           transition={{ duration: 0.7 }}
           className="text-3xl font-light tracking-wider mb-16 text-center"
         >
-          ІСТОРІЯ ВИНА
+          ІСТОРІЯ
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            {historyItems.map((item, index) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.1 }}
-                className={`cursor-pointer transition-all duration-300 ${
-                  activeIndex === index ? 'scale-105' : 'opacity-70 hover:opacity-100'
-                }`}
-                onClick={() => setActiveIndex(index)}
-              >
-                <div className="flex items-start gap-6 p-6 rounded-sm bg-white/5 backdrop-blur-sm">
-                  <div className="text-gold text-sm">{item.year}</div>
-                  <div>
-                    <h3 className="text-xl font-light mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-400">{item.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative aspect-[4/3] rounded-sm overflow-hidden"
-          >
-            {historyItems.map((item, index) => (
-              <motion.div
-                key={item.image}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: activeIndex === index ? 1 : 0 }}
-                transition={{ duration: 0.7 }}
-                className="absolute inset-0"
-              >
-                <Image
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {historyItems.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              className="relative group"
+            >
+              <div className="aspect-[4/3] relative rounded-lg overflow-hidden mb-6">
+                <CustomImage
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+              <h3 className="text-xl mb-3 text-gold">{item.title}</h3>
+              <p className="text-gray-400">{item.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 } 

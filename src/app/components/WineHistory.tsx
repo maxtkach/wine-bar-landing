@@ -2,28 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import CustomImage from '@/components/CustomImage';
 
 const historyItems = [
   {
     title: "Традиції",
-    description: "Вікові традиції виноробства, що передаються з покоління в покоління",
-    image: "/history/history1.jpg"
+    description: "Вікові традиції виноробства, що передаються з покоління в покоління. Кожна пляшка вина у нашій колекції - це історія, що розповідає про майстерність та відданість виноробів.",
+    year: "1800"
   },
   {
     title: "Спадщина",
-    description: "Багата історія та культурна спадщина виноробного мистецтва",
-    image: "/history/history2.jpg"
+    description: "Багата історія та культурна спадщина виноробного мистецтва. Ми зберігаємо та передаємо знання про найкращі вина світу та їх унікальні особливості.",
+    year: "1900"
   },
   {
     title: "Колекція",
-    description: "Унікальна колекція вин з найкращих виноробень світу",
-    image: "/history/history3.jpg"
+    description: "Унікальна колекція вин з найкращих виноробень світу. Ретельно відібрані екземпляри, що представляють різні регіони та стилі виноробства.",
+    year: "1950"
   },
   {
     title: "Винний льох",
-    description: "Ідеальні умови зберігання у нашому винному льоху",
-    image: "/history/history4.jpg"
+    description: "Ідеальні умови зберігання у нашому винному льоху. Температура, вологість та освітлення контролюються для забезпечення найкращої якості кожної пляшки.",
+    year: "2000"
   }
 ];
 
@@ -35,16 +34,6 @@ export default function WineHistory() {
 
   return (
     <section id="історія" className="py-32 relative overflow-hidden">
-      {/* Фоновое изображение */}
-      <div className="absolute inset-0">
-        <CustomImage
-          src="/history/history-bg.jpg"
-          alt="History background"
-          fill
-          className="object-cover opacity-10"
-        />
-      </div>
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.15 }}
@@ -60,29 +49,33 @@ export default function WineHistory() {
           transition={{ duration: 0.7 }}
           className="text-3xl font-light tracking-wider mb-16 text-center"
         >
-          ІСТОРІЯ
+          ІСТОРІЯ ВИНА
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {historyItems.map((item, index) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
-              className="relative group"
+              className="relative mb-16 last:mb-0"
             >
-              <div className="aspect-[4/3] relative rounded-lg overflow-hidden mb-6">
-                <CustomImage
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+              <div className="flex flex-col md:flex-row items-start gap-8">
+                <div className="flex-shrink-0 w-24 text-gold opacity-50 text-5xl font-light">
+                  {item.year}
+                </div>
+                <div>
+                  <h3 className="text-2xl mb-4 text-gold font-light tracking-wider">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {item.description}
+                  </p>
+                  <div className="mt-6 h-px bg-gradient-to-r from-gold/50 to-transparent w-full" />
+                </div>
               </div>
-              <h3 className="text-xl mb-3 text-gold">{item.title}</h3>
-              <p className="text-gray-400">{item.description}</p>
             </motion.div>
           ))}
         </div>

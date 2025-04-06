@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 export default function WineAnimation() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
+    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
+        animate={{ opacity: 0.5 }}
         transition={{ duration: 1.5 }}
         className="absolute inset-0"
       >
@@ -15,6 +15,7 @@ export default function WineAnimation() {
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
           className="w-full h-full"
+          style={{ position: 'absolute', top: 0, left: 0 }}
         >
           <defs>
             <radialGradient
@@ -27,11 +28,11 @@ export default function WineAnimation() {
             >
               <stop
                 offset="0%"
-                style={{ stopColor: 'var(--wine)', stopOpacity: 0.7 }}
+                style={{ stopColor: '#8B0000', stopOpacity: 0.8 }}
               />
               <stop
                 offset="100%"
-                style={{ stopColor: 'var(--wine)', stopOpacity: 0.1 }}
+                style={{ stopColor: '#8B0000', stopOpacity: 0.2 }}
               />
             </radialGradient>
           </defs>
@@ -56,7 +57,7 @@ export default function WineAnimation() {
             d="M0,100 C30,95 70,90 100,100 L100,0 C50,5 20,0 0,0 Z"
             fill="url(#wine-gradient)"
             className="wine-wave"
-            style={{ opacity: 0.5 }}
+            style={{ opacity: 0.7 }}
             animate={{
               d: [
                 "M0,100 C30,95 70,90 100,100 L100,0 C50,5 20,0 0,0 Z",

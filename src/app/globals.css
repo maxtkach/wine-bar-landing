@@ -36,6 +36,7 @@ body {
 .wine-wave {
   transform-origin: center;
   animation: waveOpacity 8s ease-in-out infinite;
+  filter: blur(10px);
 }
 
 @keyframes waveOpacity {
@@ -58,4 +59,12 @@ body {
   50% {
     transform: translateY(2%);
   }
+}
+
+.wine-animation-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
 }

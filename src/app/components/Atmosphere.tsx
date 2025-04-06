@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
+import CustomImage from '@/components/CustomImage';
 
 const features = [
   {
@@ -95,12 +96,14 @@ export default function Atmosphere() {
               transition={{ duration: 1 }}
               className="relative aspect-[4/3] rounded-lg overflow-hidden"
             >
-              <Image
-                src="/atmosphere.jpg"
-                alt="Wine bar atmosphere"
-                fill
-                className="object-cover"
-              />
+              <div className="absolute inset-0">
+                <CustomImage
+                  src="/atmosphere.jpg"
+                  alt="Wine bar atmosphere"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
             </motion.div>
           </div>

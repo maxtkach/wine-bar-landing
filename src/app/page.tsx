@@ -11,6 +11,7 @@ import MobileMenu from "./components/MobileMenu";
 import BookingForm from "./components/BookingForm";
 import Atmosphere from "./components/Atmosphere";
 import Events from "./components/Events";
+import CustomImage from '../components/CustomImage';
 
 const fadeIn: Variants = {
   initial: {
@@ -131,8 +132,8 @@ export default function Home() {
               transition={{ duration: 1.5 }}
               className="absolute inset-0"
             >
-              <Image
-                src="/wine-bar-landing/hero-bg.jpg"
+              <CustomImage
+                src="/hero-bg.jpg"
                 alt="Wine background"
                 fill
                 className="object-cover"
@@ -291,7 +292,7 @@ export default function Home() {
                     transition={{ delay: 0.3 + i * 0.1 }}
                     className="aspect-square relative group overflow-hidden"
                   >
-                    <Image
+                    <CustomImage
                       src={`/gallery${i}.jpg`}
                       alt={`Gallery image ${i}`}
                       fill

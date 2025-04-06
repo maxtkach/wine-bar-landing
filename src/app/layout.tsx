@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: 'Wine·Verse',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/wine-bar-landing/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Wine·Verse - Винный бар в Москве',
@@ -38,18 +38,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Wine·Verse | Винный бар в Москве',
     description: 'Изысканная коллекция вин, атмосфера роскоши и профессиональный сервис',
-    images: ['/og-image.jpg'],
+    images: ['/wine-bar-landing/og-image.jpg'],
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/wine-bar-landing/favicon.ico' },
+      { url: '/wine-bar-landing/icon.svg', type: 'image/svg+xml' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png' },
+      { url: '/wine-bar-landing/apple-touch-icon.png' },
     ],
   },
-  manifest: '/site.webmanifest',
+  manifest: '/wine-bar-landing/site.webmanifest',
   themeColor: '#0a0506',
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   metadataBase: new URL('https://maxtkach.github.io/wine-bar-landing'),
